@@ -32,6 +32,7 @@ public class DayEndComputation implements Callable<Boolean>, Runnable {
         }
     }
 
+    //for calculating the time series metrics
     @Override
     public Boolean call() throws Exception {
 
@@ -39,6 +40,7 @@ public class DayEndComputation implements Callable<Boolean>, Runnable {
         for (DTNHost host : SimScenario.getInstance().getHosts()) {
             timer = 0.0;
             List<TimeSeriesModel> timeSeriesModelList = new ArrayList<>();
+            //for each instance of time, the time series is calculated
             while (timer < dayEndTime) {
                 for (ContactTimeAndDurationModel contactTimeAndDurationModel : host.getContactTimeAndDelays()) {
                     List<TimeSeriesModel> timeSeriesModels = host
@@ -62,6 +64,7 @@ public class DayEndComputation implements Callable<Boolean>, Runnable {
                 }
                 timer++;
             }
+            //time series list is added to the host
             host.setTimeSeries(timeSeriesModelList);
         }
         return true;

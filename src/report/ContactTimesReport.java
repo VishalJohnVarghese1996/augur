@@ -67,9 +67,11 @@ public class ContactTimesReport extends Report implements ConnectionListener {
         ConnectionInfo ci = removeConnection(host1, host2);
         //add contact time duration for this particular contact
         if (ci != null) {
+            //added for host 1
             host1.getContactTimeAndDelays().add(new ContactTimeAndDurationModel(host1.getAddress(),
                     host2.getAddress(), ci.startTime, ci.endTime == -1 ? getSimTime() : ci.endTime,
                     ci.getConnectionTime()));
+            //added for host 2
             host2.getContactTimeAndDelays().add(new ContactTimeAndDurationModel(host2.getAddress(),
                     host1.getAddress(), ci.startTime, ci.endTime == -1 ? getSimTime() : ci.endTime,
                     ci.getConnectionTime()));
